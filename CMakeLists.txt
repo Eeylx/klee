@@ -30,6 +30,7 @@ set(ENABLE_Z3 OFF CACHE BOOL "Enable Z3 solver backend")
 if (LLVM_ENABLE_ASSERTIONS)
 	set(ENABLE_KLEE_DEBUG ON)
 endif()
+
 if (LLVM_ENABLE_RTTI)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -frtti")
 else()
@@ -45,6 +46,10 @@ if (${ENABLE_STP})
 	find_package(STP REQUIRED CONFIG)
 	add_definitions("-DEXT_HASH_MAP")
 	include_directories(${STP_INCLUDE_DIRS})
+endif()
+
+if (${ENABLE_Z3})
+	find_library(Z3LIB z3)
 endif()
 
 add_definitions("-DKLEE_DIR=\"${CMAKE_BINARY_DIR}\"")

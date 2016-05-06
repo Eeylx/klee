@@ -98,4 +98,9 @@ llvm_map_components_to_libnames(llvm_module
 
 target_link_libraries(kleeCore ${llvm_core})
 target_link_libraries(kleeModule ${llvm_module})
-target_link_libraries(kleaverSolver ${STP_STATIC_LIBRARY})
+if (ENABLE_STP)
+	target_link_libraries(kleaverSolver ${STP_STATIC_LIBRARY})
+endif()
+if (ENABLE_Z3)
+	target_link_libraries(kleaverSolver ${Z3LIB})
+endif()
