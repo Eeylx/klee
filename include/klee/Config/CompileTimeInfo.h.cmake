@@ -1,0 +1,7 @@
+
+#ifndef KLEE_CONFIG_COMPILETIMEINFO_H
+#define KLEE_CONFIG_COMPILETIMEINFO_H
+
+#cmakedefine KLEE_BUILD_MODE
+
+#endif
