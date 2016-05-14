@@ -17,7 +17,21 @@ include_directories(include)
 include_directories(${CMAKE_BINARY_DIR}/include)
 
 add_definitions(${LLVM_DEFINITIONS})
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -Wno-unused-parameter")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -Wall -Wextra -Wno-unused-parameter")
+
+find_program(CLANG 
+	NAMES clang clang-${LLVM_VERSION_MAJOR}.${LLVM_VERSION_MINOR}
+	HINTS ${LLVM_TOOLS_BINARY_DIR}
+	)
+find_program(LLVM_AR
+	NAMES llvm-ar llvm-ar-${LLVM_VERSION_MAJOR}.${LLVM_VERSION_MINOR}
+	HINTS ${LLVM_TOOLS_BINARY_DIR}
+	)
+message(STATUS "Using Clang ${CLANG}")
+message(STATUS "Using llvm-ar ${LLVM_AR}")
+
 
 check_include_files(malloc/malloc.h HAVE_MALLOC_MALLOC_H)
 check_include_files(inttypes.h HAVE_INTTYPES_H)
@@ -26,6 +40,7 @@ check_function_exists(mallinfo HAVE_MALLINFO)
 
 set(ENABLE_STP ON CACHE BOOL "Enable STP solver backend")
 set(ENABLE_Z3 OFF CACHE BOOL "Enable Z3 solver backend")
+set(KLEE_UCLIBC_BCA_NAME "klee-uclibc.bca" CACHE STRING "Name of klee-uclibc library")
 
 if (LLVM_ENABLE_ASSERTIONS)
 	set(ENABLE_KLEE_DEBUG ON)
