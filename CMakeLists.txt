@@ -11,9 +11,9 @@ include(CheckFunctionExists)
 
 find_program(CCACHE_FOUND ccache)
 if(CCACHE_FOUND)
-	message(STATUS "Using CCACHE: ${CCACHE_FOUND}")
-	set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
-	set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
+  message(STATUS "Using CCACHE: ${CCACHE_FOUND}")
+  set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
+  set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
 endif(CCACHE_FOUND)
 
 message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
@@ -28,14 +28,14 @@ add_definitions(${LLVM_DEFINITIONS})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -Wno-unused-parameter")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -Wall -Wextra -Wno-unused-parameter")
 
-find_program(CLANG 
-	NAMES clang clang-${LLVM_VERSION_MAJOR}.${LLVM_VERSION_MINOR}
-	HINTS ${LLVM_TOOLS_BINARY_DIR}
-	)
+find_program(CLANG
+  NAMES clang clang-${LLVM_VERSION_MAJOR}.${LLVM_VERSION_MINOR}
+  HINTS ${LLVM_TOOLS_BINARY_DIR}
+  )
 find_program(LLVM_AR
-	NAMES llvm-ar llvm-ar-${LLVM_VERSION_MAJOR}.${LLVM_VERSION_MINOR}
-	HINTS ${LLVM_TOOLS_BINARY_DIR}
-	)
+  NAMES llvm-ar llvm-ar-${LLVM_VERSION_MAJOR}.${LLVM_VERSION_MINOR}
+  HINTS ${LLVM_TOOLS_BINARY_DIR}
+  )
 message(STATUS "Using Clang ${CLANG}")
 message(STATUS "Using llvm-ar ${LLVM_AR}")
 
@@ -50,13 +50,13 @@ set(ENABLE_Z3 OFF CACHE BOOL "Enable Z3 solver backend")
 set(KLEE_UCLIBC_BCA_NAME "klee-uclibc.bca" CACHE STRING "Name of klee-uclibc library")
 
 if (LLVM_ENABLE_ASSERTIONS)
-	set(ENABLE_KLEE_DEBUG ON)
+  set(ENABLE_KLEE_DEBUG ON)
 endif()
 
 if (LLVM_ENABLE_RTTI)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -frtti")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -frtti")
 else()
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti")
 endif()
 
 set(KLEE_BUILD_MODE ${CMAKE_BUILD_TYPE})
@@ -65,13 +65,13 @@ configure_file(include/klee/Config/config.h.cmake include/klee/Config/config.h)
 configure_file(include/klee/Config/CompileTimeInfo.h.cmake include/klee/Config/CompileTimeInfo.h)
 
 if (${ENABLE_STP})
-	find_package(STP REQUIRED CONFIG)
-	add_definitions("-DEXT_HASH_MAP")
-	include_directories(${STP_INCLUDE_DIRS})
+  find_package(STP REQUIRED CONFIG)
+  add_definitions("-DEXT_HASH_MAP")
+  include_directories(${STP_INCLUDE_DIRS})
 endif()
 
 if (${ENABLE_Z3})
-	find_library(Z3LIB z3)
+  find_library(Z3LIB z3)
 endif()
 
 add_definitions("-DKLEE_DIR=\"${CMAKE_BINARY_DIR}\"")
