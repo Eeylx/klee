@@ -97,7 +97,9 @@
 #cmakedefine STDC_HEADERS
 
 /* klee-uclibc is supported */
-#cmakedefine SUPPORT_KLEE_UCLIBC
+#define SUPPORT_KLEE_UCLIBC 1
+
+#define KLEE_UCLIBC_BCA_NAME "@KLEE_UCLIBC_BCA_NAME@"
 
 #ifndef LLVM_VERSION_MAJOR
 #cmakedefine LLVM_VERSION_MAJOR @LLVM_VERSION_MAJOR@
