@@ -9,6 +9,13 @@ find_package(LLVM REQUIRED CONFIG)
 include(CheckIncludeFiles)
 include(CheckFunctionExists)
 
+find_program(CCACHE_FOUND ccache)
+if(CCACHE_FOUND)
+	message(STATUS "Using CCACHE: ${CCACHE_FOUND}")
+	set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
+	set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
+endif(CCACHE_FOUND)
+
 message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
 message(STATUS "Using LLVMConfig.cmake in: ${LLVM_DIR}")
 
