@@ -12,7 +12,7 @@
 #cmakedefine ENABLE_STP
 
 /* Using Z3 Solver backend */
-#cmakedefine ENABLE_Z3
+#cmakedefine01 ENABLE_Z3
 
 /* Does the platform use __ctype_b_loc, etc. */
 #cmakedefine HAVE_CTYPE_EXTERNALS
