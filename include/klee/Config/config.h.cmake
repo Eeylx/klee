@@ -69,26 +69,23 @@
    context parameters. */
 #cmakedefine KLEE_SELINUX_CTX_CONST
 
-/* LLVM version is release (instead of development) */
-#cmakedefine LLVM_IS_RELEASE
-
 /* Define to the address where bug reports for this package should be sent. */
-#cmakedefine PACKAGE_BUGREPORT
+#cmakedefine PACKAGE_BUGREPORT "@PACKAGE_BUGREPORT@"
 
 /* Define to the full name of this package. */
-#cmakedefine PACKAGE_NAME
+#cmakedefine PACKAGE_NAME "@PACKAGE_NAME@"
 
 /* Define to the full name and version of this package. */
-#cmakedefine PACKAGE_STRING
+#cmakedefine PACKAGE_STRING "@PACKAGE_STRING@"
 
 /* Define to the one symbol short name of this package. */
 #cmakedefine PACKAGE_TARNAME
 
 /* Define to the home page for this package. */
-#cmakedefine PACKAGE_URL
+#cmakedefine PACKAGE_URL "@PACKAGE_URL@"
 
 /* Define to the version of this package. */
-#cmakedefine PACKAGE_VERSION
+#cmakedefine PACKAGE_VERSION "@PACKAGE_VERSION@"
 
 /* Configuration for runtime libraries */
 #define RUNTIME_CONFIGURATION "@RUNTIME_CONFIGURATION@"

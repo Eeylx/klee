@@ -104,3 +104,7 @@ endif()
 if (ENABLE_Z3)
   target_link_libraries(kleaverSolver ${Z3LIB})
 endif()
+if (HAVE_TCMALLOC)
+  target_link_libraries(kleeSupport ${TCMALLOC_LIB})
+endif()
+
