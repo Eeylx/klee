@@ -11,6 +11,12 @@ add_executable(kleaver
 add_executable(gen-random-bout
   gen-random-bout/gen-random-bout.cpp)
 
+add_executable(klee-replay
+  klee-replay/fd_init.c
+  klee-replay/file-creator.c
+  klee-replay/klee_init_env.c
+  klee-replay/klee-replay.c)
+
 target_link_libraries(klee
   kleeCore
   kleeBasic
@@ -29,3 +35,14 @@ target_link_libraries(kleaver
   ${llvm_libs})
 
 target_link_libraries(gen-random-bout kleeBasic)
+target_link_libraries(klee-replay kleeBasic util)
+
+install(TARGETS klee kleaver gen-random-bout klee-replay
+  RUNTIME DESTINATION bin
+  )
+
+install(PROGRAMS
+  klee-stats/klee-stats
+  ktest-tool/ktest-tool
+  DESTINATION bin
+  )

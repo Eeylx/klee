@@ -43,7 +43,7 @@ add_library(klee-libc STATIC
   klee-libc/tolower.c
   klee-libc/toupper.c)
 
-add_library(kleeRuntimePOSIX 
+add_library(kleeRuntimePOSIX
   POSIX/fd_32.c
   POSIX/fd_64.c
   POSIX/fd.c
@@ -59,3 +59,7 @@ set_target_properties(
   PROPERTIES
   SUFFIX ".bca"
   PREFIX "")
+
+install(TARGETS klee-libc kleeRuntimePOSIX kleeRuntimeIntrinsic
+  ARCHIVE DESTINATION lib/klee
+  )
