@@ -95,6 +95,8 @@ else()
   set(HAVE_TCMALLOC OFF)
 endif()
 
+install(FILES include/klee/klee.h DESTINATION include/klee)
+
 add_subdirectory(lib)
 add_subdirectory(tools)
 add_subdirectory(runtime)
