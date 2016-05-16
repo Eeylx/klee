@@ -371,7 +371,7 @@ void KModule::prepare(const Interpreter::ModuleOptions &opts,
   SmallString<128> LibPath(opts.LibraryDir);
   llvm::sys::path::append(LibPath,
 #if LLVM_VERSION_CODE >= LLVM_VERSION(3,3)
-      "kleeRuntimeIntrinsic.bc"
+      "kleeRuntimeIntrinsic.bca"
 #else
       "libkleeRuntimeIntrinsic.bca"
 #endif

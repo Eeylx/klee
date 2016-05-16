@@ -1344,7 +1344,7 @@ int main(int argc, char **argv, char **envp) {
     // FIXME: Find a reasonable solution for this.
     SmallString<128> Path(Opts.LibraryDir);
 #if LLVM_VERSION_CODE >= LLVM_VERSION(3,3)
-    llvm::sys::path::append(Path, "klee-libc.bc");
+    llvm::sys::path::append(Path, "klee-libc.bca");
 #else
     llvm::sys::path::append(Path, "libklee-libc.bca");
 #endif
@@ -1360,7 +1360,7 @@ int main(int argc, char **argv, char **envp) {
 
   if (WithPOSIXRuntime) {
     SmallString<128> Path(Opts.LibraryDir);
-    llvm::sys::path::append(Path, "libkleeRuntimePOSIX.bca");
+    llvm::sys::path::append(Path, "kleeRuntimePOSIX.bca");
     klee_message("NOTE: Using model: %s", Path.c_str());
     mainModule = klee::linkWithLibrary(mainModule, Path.c_str());
     assert(mainModule && "unable to link with simple model");
