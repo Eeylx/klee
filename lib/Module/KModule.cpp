@@ -102,6 +102,11 @@ namespace {
   cl::opt<bool>
   DebugPrintEscapingFunctions("debug-print-escaping-functions", 
                               cl::desc("Print functions whose address is taken."));
+
+  cl::opt<bool>
+  NoBooleanSimplification("no-boolean-simplification",
+                          cl::desc("Do not simplify boolean control expressions"),
+                          cl::init(false));
 }
 
 KModule::KModule(Module *_module) 
@@ -395,7 +400,8 @@ void KModule::prepare(const Interpreter::ModuleOptions &opts,
 #else
   PassManager pm3;
 #endif
-  pm3.add(createCFGSimplificationPass());
+  if (!NoBooleanSimplification)
+    pm3.add(createCFGSimplificationPass());
   switch(SwitchType) {
   case eSwitchTypeInternal: break;
   case eSwitchTypeSimple: pm3.add(new LowerSwitchPass()); break;
